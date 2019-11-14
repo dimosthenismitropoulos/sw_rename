@@ -338,12 +338,8 @@ void MainWindow::showEvent(QShowEvent *event){
     }
 
 }
-void MainWindow::onSplitterSplittermoved(int pos, int index)
-{
-    Q_UNUSED(pos)
-    Q_UNUSED(index)
-    uiProportionsChanged();
-}
+
+
 void MainWindow::uiProportionsChanged(){
     //int scrollbarWidth2 = qApp->style()->pixelMetric(QStyle::PM_ScrollBarExtent);
    // int scrollbarWidth = ui->treeWidget_Results->verticalScrollBar()->width();
@@ -712,7 +708,25 @@ void MainWindow::on_treeWidget_Expressions_itemSelectionChanged()
     ui->lineEdit_Search->setText(ui->treeWidget_Expressions->selectedItems().at(0)->text(1));
     ui->lineEdit_Replace->setText(ui->treeWidget_Expressions->selectedItems().at(0)->text(2));
 }
-void MainWindow::onPushbuttonApplyClicked()
+
+
+
+
+void MainWindow::on_treeWidget_Results_itemSelectionChanged()
+{
+    if (!ui->treeWidget_Results->selectedItems().isEmpty()){
+        QString path = locationUrl.path();
+        QDir directory(path);
+
+        QFileInfo fileInfo(directory,ui->treeWidget_Results->selectedItems().at(0)->text(0));
+        if (fileInfo.isDir()){
+            setLocationUrl(fileInfo.filePath());
+        }
+
+    }
+}
+
+void MainWindow::on_pushButton_Apply_clicked()
 {
     QString search = ui->lineEdit_Search->text();
     QString replace = ui->lineEdit_Replace->text();
@@ -778,18 +792,10 @@ void MainWindow::onPushbuttonApplyClicked()
     ui->lineEdit_Replace->setText("");
 }
 
-
-
-void MainWindow::on_treeWidget_Results_itemSelectionChanged()
+void MainWindow::on_splitter_splitterMoved(int pos, int index)
 {
-    if (!ui->treeWidget_Results->selectedItems().isEmpty()){
-        QString path = locationUrl.path();
-        QDir directory(path);
-
-        QFileInfo fileInfo(directory,ui->treeWidget_Results->selectedItems().at(0)->text(0));
-        if (fileInfo.isDir()){
-            setLocationUrl(fileInfo.filePath());
-        }
-
-    }
+    Q_UNUSED(pos)
+    Q_UNUSED(index)
+    uiProportionsChanged();
 }
+

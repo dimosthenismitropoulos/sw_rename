@@ -53,13 +53,11 @@ private slots:
     void on_lineEdit_Replace_textChanged(const QString &arg1);
     void on_treeWidget_Expressions_itemSelectionChanged();
     void on_treeWidget_Results_itemSelectionChanged();
+    void on_pushButton_Apply_clicked();
+    void on_splitter_splitterMoved(int pos, int index);
 
     //  Handwritten  slots
-    void initializeToolbar();
-    void initializeKUrlNavigator();
-    void initializeTreeWidget_Expressions();
-    void initializeStatusBar();
-    void initializeWindowPosition();
+
 
     void toolbuttonGobackClicked();
     void toolbuttonGoforwardClicked();
@@ -79,9 +77,6 @@ private slots:
     void urlChanged();
     void showResults();
 
-
-    void onPushbuttonApplyClicked();
-    void onSplitterSplittermoved(int pos, int index);
 
 
 
@@ -111,6 +106,12 @@ private:
     KConfigGroup configgroupExpressions;
 
     bool treewidgetExpressionsModified = false;
+
+    void initializeToolbar();
+    void initializeKUrlNavigator();
+    void initializeTreeWidget_Expressions();
+    void initializeStatusBar();
+    void initializeWindowPosition();
     void savesubtreeExpressions(QTreeWidgetItem *item, const QString &key);
     void loadsubtreeExpressions(QTreeWidgetItem *item, const QString &key);
 
