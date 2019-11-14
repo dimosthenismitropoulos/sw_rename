@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Service
+Icon=view-list-icons
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=inode/directory;
+Actions=rename;
+Encoding=UTF-8
+
+[Desktop Action rename]
+Name=Rename
+Icon=view-list-icons
+Exec=$HOME/Applications/Rename/Rename %u
